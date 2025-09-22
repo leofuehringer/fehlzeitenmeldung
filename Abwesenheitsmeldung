@@ -1,0 +1,95 @@
+#!/bin/bash
+
+# configure pattern which classes to include. Use '.*' for all classes
+klassen='E[1-4][A-Z0-9]+|1BFE|3BKE[A-Z0-9]+'
+
+# configure path here.
+ausbilder_file=/var/www/fehlzeiten/uploads/ausbilder_Emails.csv
+
+#configuration end
+tmpfile=/tmp/$$.tmp
+sent_db=/var/www/sent.db
+
+if [ "$2" = "e" ]; then
+  (cat $1 | awk -F $'\t' '$4 ~/^'$klassen'/ {
+        if ($8=="45" && $18=="entsch.")
+                print
+                }') > $tmpfile
+elif [ "$2" = "u" ]; then
+  (cat $1 | awk -F $'\t' '$4 ~/^'$klassen'/ {
+        if ($8=="45" && $18!="entsch.")
+                print
+                }') > $tmpfile
+else
+  (cat $1 | awk -F $'\t' '$4 ~/^'$klassen'/ {
+	if ($8=="45")
+		print
+		}') > $tmpfile
+fi
+students=$(cat $tmpfile|awk -F $'\t' '{print $2}'|sort|uniq)
+
+for i in $students
+do
+	cat $tmpfile | grep $i  | sort -nt $'\t' -k 17 > $tmpfile-1
+	von=$(head -1 $tmpfile-1 |awk -F $'\t' '{print $17}')
+	bis=$(tail -1 $tmpfile-1 |awk -F $'\t' '{print $17}')
+	name=$(head -1 $tmpfile-1 |awk -F $'\t' '{print $1}')
+	klasse=$(head -1 $tmpfile-1 |awk -F $'\t' '{print $4}')
+	datum=$(head -1 $tmpfile-1 |awk -F $'\t' '{print $5}')
+  sid=$(head -1 $tmpfile-1 | awk -F $'\t' '{print $2}')
+  id=$(echo $sid|sed -r 's/.+_+([0-9]{4,5})/\1/')
+  ausbilder=$(grep $id $ausbilder_file| awk -F ';' '{print $2}'|sed 's/"//g')
+  sent="$(grep $datum-$sid $sent_db)"
+
+	if [ $von = "1" ] && [ $bis = "1" ]; then
+		continue
+	fi
+	if [ -z $ausbilder ]; then
+		# exclude classes from being listed here
+		if [ $klasse = "1BFE" ]; then
+			continue
+		fi
+	fi
+	echo "<tr><td>$name</td><td>$klasse</td><td>"
+	if [ -n $2 ]; then
+          cat $tmpfile-1|head -1 | awk -F $'\t' '$4 ~/'$klassen'/ {
+                        print $11"</td><td> "$12"</td>"
+                        }'
+	else
+	  cat $tmpfile-1|head -1 | awk -F $'\t' '$4 ~/'$klassen'/ {
+			print "("$18")</td><td> "$11"</td><td> "$12"</td>"
+			}'
+	fi
+	nomail=0;
+	if [ -z $ausbilder ]; then
+	  ausbilder="<span style='font-weight: bold; color: red;'>FEHLT!</span>"
+	  nomail=1
+	fi
+	echo "<td>$von</td><td>$bis</td>"
+	if [ "$2" = "e" ] || [ $nomail -eq 1 ] || [ ! -z "$sent" ]; then
+	  echo "<td style='text-align: left'><input type='checkbox' name='send[$sid]' value='0' "
+	  if [ $nomail -eq 1 ]; then
+	    echo "disabled='disabled' "
+	  fi
+	else
+	  echo "<td style='text-align: left'><input type='checkbox' name='send[$sid]' value='1' checked='checked'"
+	fi
+	echo "/>"
+	if [ ! -z "$sent" ]; then
+		echo "<span style='color: #008000'>&#10004;</span>";
+	fi
+	echo "</td><td>$ausbilder";
+	if [ $nomail -eq 1 ]; then ausbilder=""; fi
+	echo "<input type='hidden' name='ausbilder[]' value='$ausbilder' />"
+	echo "<input type='hidden' name='name[]' value='$name' />"
+	echo "<input type='hidden' name='id[]' value='$sid' />"
+	echo "<input type='hidden' name='klasse[]' value='$klasse' />"
+	echo "<input type='hidden' name='von[]' value='$von' />"
+	echo "<input type='hidden' name='bis[]' value='$bis' />"
+	echo "<input type='hidden' name='datum[]' value='$datum' />"
+	echo "</td></tr>"
+	rm $tmpfile-1
+done
+
+echo "</table>"
+rm $tmpfile

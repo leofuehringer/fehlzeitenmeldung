@@ -1,0 +1,62 @@
+<?php
+
+  /* local configuration */
+  define('PASSWORD', 'secret');
+  define('MAIL_FROM', 'mail@example.com');
+  define('MAIL_FROM_NAME', 'Sekretariat Musterschule');
+  define('MAIL_SUBJECT', 'Fehlzeitenmeldung Musterschule');
+  
+  /* technical configuration: paths */
+  define('UPLOAD_DIR', '/var/www/html/fehlzeiten/uploads/');
+  define('AUSBILDER_DB', UPLOAD_DIR . 'ausbilder_Emails.csv');
+  define('ABSENCE_SHELL_SCRIPT', '/var/www/fehlzeitenmeldung/Abwesenheitsmeldung');
+
+
+
+
+  /* design configuration */
+
+  define('HEADER_IMAGE', '<a href="https://www.hhs.karlsruhe.de/" class="custom-logo-link" rel="home" itemprop="url">
+     <img src="images/Schullogo.png" class="custom-logo" alt="HHS" itemprop="logo" width="110" height="103"></a>');
+  define('HEADER_TEXT', '<h1 id="site-title"><a href="https://www.hhs.karlsruhe.de/" title="Heinrich-Hertz-Schule Karlsruhe"
+     rel="home">Heinrich-Hertz-Schule Karlsruhe</a></h1>
+   <p id="site-description">Schule f&uuml;r Elektrotechnik und Informationstechnik</p>');
+
+
+  /* email text configuration */
+  /* Note that the three string placeholders %s are required. The first will be replaced by the student's name,
+     the second by their class and the third by the absence duration.*/
+
+  define('MAIL_TEXT', 'Teilnahme am Berufsschulunterricht
+
+
+Sehr geehrte Damen und Herren,
+
+Ihr Auszubildender/Ihre Auszubildende
+
+Herr/Frau: %s
+Klasse: %s
+
+%s
+Max-Muster-Schule Musterstadt gefehlt. Weitere Fehlstunden können noch im
+Klassentagebuchsystem nachgemeldet werden, Sie werden dann aber keine weitere
+E-Mail für diesen Tag erhalten.
+
+Bei dauerhafter Erkrankung erbitten wir eine Kopie der Krankmeldung. Sie werden
+dann für die Dauer der Krankheit nicht mehr benachrichtigt.
+
+Gez.: Sekretariat der Max-Muster-Schule Musterstadt
+
+--
+
+Sekretariat
+
+Max-Muster-Schule 
+Musterstraße 51
+13567 Musterstadt
+
+Tel.: 0127 123-0185
+Fax: 0127 123-0186
+Mail: sekretariat@musterschule.de
+Homepage: www.example.com');
+?>
