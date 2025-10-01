@@ -1,0 +1,56 @@
+Schüler*innen	Externe Id	Text	Klasse	Datum	Wochentag	Fehlstd.	Fehlmin.	Lehrkraft	Fach	Abwesenheitsgrund	Text	ENr	Erledigt	Abwesenheit zählt	Entschuldigungstext	Stundennr.	Status	Fehltage
+Ali Shehab	8a163402-91fe5af7-0191-ffef1ceb-1159		1BK1T1	01.10.25	Mi.	1	23	StSa	AM					true		1	offen	0
+Dittrich Nico	8a163402-9917b69e-0199-1aebc4f3-4cb6		1BK1T1	01.10.25	Mi.	1	45	StSa	AM					true		1	offen	0
+Dittrich Nico	8a163402-9917b69e-0199-1aebc4f3-4cb6		1BK1T1	01.10.25	Mi.	1	45	StSa	AM					true		2	offen	0
+Dittrich Nico	8a163402-9917b69e-0199-1aebc4f3-4cb6		1BK1T1	01.10.25	Mi.	1	45	RoAl (KeSt)	AT					true		4	offen	0
+Dittrich Nico	8a163402-9917b69e-0199-1aebc4f3-4cb6		1BK1T1	01.10.25	Mi.	1	45	RoAl (KeSt)	AT					true		5	offen	0
+Dittrich Nico	8a163402-9917b69e-0199-1aebc4f3-4cb6		1BK1T1	01.10.25	Mi.	1	45	RoAl (KeSt)	AT					true		6	offen	1
+Ionel David	8a163402-9937e245-0199-38b2b314-07ab		1BK1T1	01.10.25	Mi.	1	45	StSa	AM		Darm probleme			true		1	offen	0
+Ionel David	8a163402-9937e245-0199-38b2b314-07ab		1BK1T1	01.10.25	Mi.	1	45	StSa	AM		Darm probleme			true		2	offen	0
+Ionel David	8a163402-9937e245-0199-38b2b314-07ab		1BK1T1	09.10.25	Do.	1	45	MuJa	G-GK					true		8	offen	0
+Ionel David	8a163402-9937e245-0199-38b2b314-07ab		1BK1T1	09.10.25	Do.	1	45	MuJa	G-GK					true		9	offen	1
+Ionel David	8a163402-9937e245-0199-38b2b314-07ab		1BK1T1	09.10.25	Do.	0	0	JoHa	GL-T					false		5	offen	0
+Ionel David	8a163402-9937e245-0199-38b2b314-07ab		1BK1T1	09.10.25	Do.	0	0	JoHa	GL-T					false		6	offen	0
+Ionel David	8a163402-9937e245-0199-38b2b314-07ab		1BK1T1	09.10.25	Do.	1	45	MaSa	GL-T					true		5	offen	0
+Ionel David	8a163402-9937e245-0199-38b2b314-07ab		1BK1T1	09.10.25	Do.	1	45	MaSa	GL-T					true		6	offen	0
+Ionel David	8a163402-9937e245-0199-38b2b314-07ab		1BK1T1	16.10.25	Do.	1	45	MuJa	G-GK					true		8	offen	0
+Ionel David	8a163402-9937e245-0199-38b2b314-07ab		1BK1T1	16.10.25	Do.	1	45	MuJa	G-GK					true		9	offen	1
+Ionel David	8a163402-9937e245-0199-38b2b314-07ab		1BK1T1	16.10.25	Do.	0	0	JoHa	GL-T					false		5	offen	0
+Ionel David	8a163402-9937e245-0199-38b2b314-07ab		1BK1T1	16.10.25	Do.	0	0	JoHa	GL-T					false		6	offen	0
+Ionel David	8a163402-9937e245-0199-38b2b314-07ab		1BK1T1	16.10.25	Do.	1	45	MaSa	GL-T					true		5	offen	0
+Ionel David	8a163402-9937e245-0199-38b2b314-07ab		1BK1T1	16.10.25	Do.	1	45	MaSa	GL-T					true		6	offen	0
+Konstantin Silas	8a163402-9917b69e-0199-1aebc61f-4dc9		1BK1T1	07.10.25	Di.	1	45	JoHa	MDT		Fahrschule			true		8	offen	0
+Konstantin Silas	8a163402-9917b69e-0199-1aebc61f-4dc9		1BK1T1	07.10.25	Di.	1	45	JoHa	MDT		Fahrschule			true		9	offen	0
+Konstantin Silas	8a163402-9917b69e-0199-1aebc61f-4dc9		1BK1T1	09.10.25	Do.	1	45	ScMa	E		Fahrschule (Praktische prüfung A1) ich kann die bescheinigung der prüfung einen tag später in der schule abgeben			true		3	offen	0
+Konstantin Silas	8a163402-9917b69e-0199-1aebc61f-4dc9		1BK1T1	09.10.25	Do.	1	45	ScMa	E		Fahrschule (Praktische prüfung A1) ich kann die bescheinigung der prüfung einen tag später in der schule abgeben			true		4	offen	0
+Konstantin Silas	8a163402-9917b69e-0199-1aebc61f-4dc9		1BK1T1	09.10.25	Do.	1	45	MuJa	G-GK		Fahrschule (Praktische prüfung A1) ich kann die bescheinigung der prüfung einen tag später in der schule abgeben			true		8	offen	0
+Konstantin Silas	8a163402-9917b69e-0199-1aebc61f-4dc9		1BK1T1	09.10.25	Do.	1	45	MuJa	G-GK		Fahrschule (Praktische prüfung A1) ich kann die bescheinigung der prüfung einen tag später in der schule abgeben			true		9	offen	1
+Konstantin Silas	8a163402-9917b69e-0199-1aebc61f-4dc9		1BK1T1	09.10.25	Do.	0	0	JoHa	GL-T		Fahrschule (Praktische prüfung A1) ich kann die bescheinigung der prüfung einen tag später in der schule abgeben			false		5	offen	0
+Konstantin Silas	8a163402-9917b69e-0199-1aebc61f-4dc9		1BK1T1	09.10.25	Do.	0	0	JoHa	GL-T		Fahrschule (Praktische prüfung A1) ich kann die bescheinigung der prüfung einen tag später in der schule abgeben			false		6	offen	0
+Konstantin Silas	8a163402-9917b69e-0199-1aebc61f-4dc9		1BK1T1	09.10.25	Do.	1	45	MaSa	GL-T		Fahrschule (Praktische prüfung A1) ich kann die bescheinigung der prüfung einen tag später in der schule abgeben			true		5	offen	0
+Konstantin Silas	8a163402-9917b69e-0199-1aebc61f-4dc9		1BK1T1	09.10.25	Do.	1	45	MaSa	GL-T		Fahrschule (Praktische prüfung A1) ich kann die bescheinigung der prüfung einen tag später in der schule abgeben			true		6	offen	0
+Konstantin Silas	8a163402-9917b69e-0199-1aebc61f-4dc9		1BK1T1	09.10.25	Do.	1	45	NeGr	SPO		Fahrschule (Praktische prüfung A1) ich kann die bescheinigung der prüfung einen tag später in der schule abgeben			true		1	offen	0
+Konstantin Silas	8a163402-9917b69e-0199-1aebc61f-4dc9		1BK1T1	09.10.25	Do.	1	45	NeGr	SPO		Fahrschule (Praktische prüfung A1) ich kann die bescheinigung der prüfung einen tag später in der schule abgeben			true		2	offen	0
+Rashdan Ibrahim	8a163402-9932451a-0199-325d4dfb-006d		1BK1T1	01.10.25	Mi.	1	45	StSa	AM		Ich kann die Schule nicht besuchen, da ich krank bin.			true		1	offen	0
+Rashdan Ibrahim	8a163402-9932451a-0199-325d4dfb-006d		1BK1T1	01.10.25	Mi.	1	45	StSa	AM		Ich kann die Schule nicht besuchen, da ich krank bin.			true		2	offen	0
+Rashdan Ibrahim	8a163402-9932451a-0199-325d4dfb-006d		1BK1T1	01.10.25	Mi.	1	45	RoAl (KeSt)	AT		Ich kann die Schule nicht besuchen, da ich krank bin.			true		4	offen	0
+Rashdan Ibrahim	8a163402-9932451a-0199-325d4dfb-006d		1BK1T1	01.10.25	Mi.	1	45	RoAl (KeSt)	AT		Ich kann die Schule nicht besuchen, da ich krank bin.			true		5	offen	0
+Rashdan Ibrahim	8a163402-9932451a-0199-325d4dfb-006d		1BK1T1	01.10.25	Mi.	1	45	RoAl (KeSt)	AT		Ich kann die Schule nicht besuchen, da ich krank bin.			true		6	offen	1
+Solmaz Semi	8a163402-9917b69e-0199-1aebc6b5-4e3e		1BK1T1	09.10.25	Do.	1	45	MuJa	G-GK					true		8	offen	0
+Solmaz Semi	8a163402-9917b69e-0199-1aebc6b5-4e3e		1BK1T1	09.10.25	Do.	1	45	MuJa	G-GK					true		9	offen	1
+Solmaz Semi	8a163402-9917b69e-0199-1aebc6b5-4e3e		1BK1T1	09.10.25	Do.	0	0	JoHa	GL-T					false		5	offen	0
+Solmaz Semi	8a163402-9917b69e-0199-1aebc6b5-4e3e		1BK1T1	09.10.25	Do.	0	0	JoHa	GL-T					false		6	offen	0
+Solmaz Semi	8a163402-9917b69e-0199-1aebc6b5-4e3e		1BK1T1	09.10.25	Do.	1	45	MaSa	GL-T					true		5	offen	0
+Solmaz Semi	8a163402-9917b69e-0199-1aebc6b5-4e3e		1BK1T1	09.10.25	Do.	1	45	MaSa	GL-T					true		6	offen	0
+Vaharelis Timo	8a163402-9917b69e-0199-1aebc52f-4ceb		1BK1T1	09.10.25	Do.	1	45	MuJa	G-GK					true		8	offen	0
+Vaharelis Timo	8a163402-9917b69e-0199-1aebc52f-4ceb		1BK1T1	09.10.25	Do.	1	45	MuJa	G-GK					true		9	offen	1
+Vaharelis Timo	8a163402-9917b69e-0199-1aebc52f-4ceb		1BK1T1	09.10.25	Do.	0	0	JoHa	GL-T					false		5	offen	0
+Vaharelis Timo	8a163402-9917b69e-0199-1aebc52f-4ceb		1BK1T1	09.10.25	Do.	0	0	JoHa	GL-T					false		6	offen	0
+Vaharelis Timo	8a163402-9917b69e-0199-1aebc52f-4ceb		1BK1T1	09.10.25	Do.	1	45	MaSa	GL-T					true		5	offen	0
+Vaharelis Timo	8a163402-9917b69e-0199-1aebc52f-4ceb		1BK1T1	09.10.25	Do.	1	45	MaSa	GL-T					true		6	offen	0
+Vaharelis Timo	8a163402-9917b69e-0199-1aebc52f-4ceb		1BK1T1	16.10.25	Do.	1	45	MuJa	G-GK					true		8	offen	0
+Vaharelis Timo	8a163402-9917b69e-0199-1aebc52f-4ceb		1BK1T1	16.10.25	Do.	1	45	MuJa	G-GK					true		9	offen	1
+Vaharelis Timo	8a163402-9917b69e-0199-1aebc52f-4ceb		1BK1T1	16.10.25	Do.	0	0	JoHa	GL-T					false		5	offen	0
+Vaharelis Timo	8a163402-9917b69e-0199-1aebc52f-4ceb		1BK1T1	16.10.25	Do.	0	0	JoHa	GL-T					false		6	offen	0
+Vaharelis Timo	8a163402-9917b69e-0199-1aebc52f-4ceb		1BK1T1	16.10.25	Do.	1	45	MaSa	GL-T					true		5	offen	0
+Vaharelis Timo	8a163402-9917b69e-0199-1aebc52f-4ceb		1BK1T1	16.10.25	Do.	1	45	MaSa	GL-T					true		6	offen	0
