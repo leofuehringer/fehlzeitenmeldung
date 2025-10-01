@@ -7,9 +7,11 @@ define('AUTH_METHOD', 0); // Setzen Sie auf 0 für einfaches Passwort oder 1 fü
 define('PASSWORD', 'secret');
 
 /* technical configuration: paths */
+define('BASE_DIR', '/var/www/html/fehlzeiten/');
 define('UPLOAD_DIR', '/var/www/html/fehlzeiten/uploads/');
-define('AUSBILDER_DB', UPLOAD_DIR . 'ausbilder_Emails.csv');
-define('ABSENCE_SHELL_SCRIPT', '/var/www/fehlzeitenmeldung/Abwesenheitsmeldung');
+define('ABSENCE_SHELL_SCRIPT', BASE_DIR . 'abwesenheitsmeldung.sh');
+define('SENT_DB', BASE_DIR . 'sent.db');
+define('AUSBILDER_FILE', UPLOAD_DIR . 'ausbilder_Emails.csv');
 
 /* LDAP configuration: */
 define('LDAP_SERVER', 'ldaps://your.ldap.server');

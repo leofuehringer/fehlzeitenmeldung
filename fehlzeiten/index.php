@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 require('config.php');
 require('mail_functions.php');
 require('auth.php'); // Session-Check
@@ -34,105 +37,98 @@ define('MAX_FILESIZE', 500000);
     </form>
 </header>
 
-
 <main>
     <h2>Fehlzeitenmeldung</h2>
 
-    <?php
-    $ausbilder = AUSBILDER_DB;
-
-    if (!isset($_POST['stage'])) {
-        // Upload-Formular
-        ?>
-        <form method="post" enctype="multipart/form-data">
-            <label>CSV-Datei hochladen:</label>
-            <input type="file" name="fileToUpload" required>
-            <button type="submit" name="submit">Fehlzeitenmeldung starten</button>
-            <input type="hidden" name="stage" value="0">
-        </form>
-
-        <div class="info-box">
-            <strong>Ausbilder-Email-Liste:</strong><br>
-            Aktuelle Datei:
-            <?php
-            if (file_exists($ausbilder)) {
-                echo date("d.m.Y H:i:s ", filemtime($ausbilder)) . ", " . filesize($ausbilder) . " bytes";
-            } else {
-                echo "<span class='error-msg'>FEHLT!</span>";
-            }
-            ?>
-            <br>Neue Datei wird automatisch erzeugt, wenn die ASV-WebUntis-Datei abgelegt wird.
-            <br>Test-Mail senden: <a href="test_email.php">hier</a>
-        </div>
+<?php
+if (!isset($_POST['stage'])) {
+    // Upload-Formular
+    ?>
+    <form method="post" enctype="multipart/form-data">
+        <label>CSV-Datei hochladen:</label>
+        <input type="file" name="fileToUpload" required>
+        <button type="submit" name="submit">Fehlzeitenmeldung starten</button>
+        <input type="hidden" name="stage" value="0">
+    </form>
+    <div class="info-box">
+        <strong>Ausbilder-Email-Liste:</strong><br>
+        Aktuelle Datei:
         <?php
-    } else {
-        switch ($_POST['stage']) {
-            case 0:
-                // Upload-Verarbeitung
-                $target_dir = UPLOAD_DIR;
-                $target_file = $target_dir . basename($_FILES['fileToUpload']['name']);
+        if (file_exists(AUSBILDER_FILE)) {
+            echo date("d.m.Y H:i:s ", filemtime(AUSBILDER_FILE)) . ", " . filesize(AUSBILDER_FILE) . " bytes";
+        } else {
+            echo "<span class='error-msg'>FEHLT!</span>";
+        }
+        ?>
+        <br>Neue Datei wird automatisch erzeugt, wenn die ASV-WebUntis-Datei abgelegt wird.
+        <br>Test-Mail senden: <a href="test_email.php">hier</a>
+    </div>
+    <?php
+} else {
+    switch ($_POST['stage']) {
+        case 0:
+            // Upload-Verarbeitung
+            $target_dir = UPLOAD_DIR;
+            $target_file = $target_dir . basename($_FILES['fileToUpload']['name']);
 
-                if ($_FILES['fileToUpload']['size'] > MAX_FILESIZE || $_FILES['fileToUpload']['size'] == 0) {
-                    die('<p class="error-msg">Datei ungültig (zu groß oder leer).</p>');
-                }
+            if ($_FILES['fileToUpload']['size'] > MAX_FILESIZE || $_FILES['fileToUpload']['size'] == 0) {
+                die('<p class="error-msg">Datei ungültig (zu groß oder leer).</p>');
+            }
 
-                move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $target_file);
-                header_text(false);
-                system(ABSENCE_SHELL_SCRIPT . " '$target_file' u");
-                echo "<input type='hidden' name='file' value='$target_file'>";
-                echo "<button type='submit'>Absenden</button>";
-                echo "<input type='hidden' name='stage' value='1'>";
+            move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $target_file);
+
+            // Bash-Script aufrufen und direkt die Tabelle ausgeben
+            system(ABSENCE_SHELL_SCRIPT . " '$target_file' u " . AUSBILDER_FILE . " " . SENT_DB);
+
+            // Hidden Input für Mailversand
+            echo "<input type='hidden' name='file' value='$target_file'>";
+            echo "<input type='hidden' name='stage' value='1'>";
+            break;
+
+        case 1:
+            // Mailversand
+            $sent_db = SENT_DB;
+            if (!isset($_POST['file'])) {
+                echo "<p class='error-msg'>Keine Datei übergeben!</p>";
                 break;
+            }
 
-            case 1:
-                // Mailversand
-                $sent_db = '/var/www/sent.db';
-                if (isset($_POST['file'])) {
-                    $target_file = $_POST['file'];
-                    echo "<div class='info-box'><strong>Prüfen Sie die Entschuldigungen</strong></div>";
-                }
+            $target_file = $_POST['file'];
+            echo "<div class='info-box'><strong>Prüfen Sie die Entschuldigungen</strong></div>";
+            echo "<h3>Mailversand:</h3>";
 
-                echo "<h3>Mailversand:</h3>";
-                for ($i = 0; $i < count($_POST['name']); $i++) {
-                    $name = $_POST['name'][$i];
-                    $klasse = $_POST['klasse'][$i];
-                    $von = $_POST['von'][$i];
-                    $bis = $_POST['bis'][$i];
-                    $ausbilder = $_POST['ausbilder'][$i];
-                    $id = $_POST['id'][$i];
-                    $datum = $_POST['datum'][$i];
-                    $send = isset($_POST['send'][$id]);
-                    $cc = isset($_POST['cc']);
+            for ($i = 0; $i < count($_POST['name']); $i++) {
+                $name = $_POST['name'][$i];
+                $klasse = $_POST['klasse'][$i];
+                $von = $_POST['von'][$i];
+                $bis = $_POST['bis'][$i];
+                $ausbilder = $_POST['ausbilder'][$i];
+                $id = $_POST['id'][$i];
+                $datum = $_POST['datum'][$i];
+                $send = isset($_POST['send'][$id]);
+                $cc = isset($_POST['cc']);
 
-                    $vonbis = ($von == $bis) ?
-                        "hat am $datum in der $von. Stunde" :
-                        "hat am $datum von der $von. bis zur $bis. Stunde";
+                $vonbis = ($von == $bis) ?
+                    "hat am $datum in der $von. Stunde" :
+                    "hat am $datum von der $von. bis zur $bis. Stunde";
 
-                    $message = sprintf(MAIL_TEXT, $name, $klasse, $vonbis);
-                    if ($send) {
-                        $result = send_mail($ausbilder, $message, $cc);
-                        if (strpos($result, 'ok') !== false) {
-                            file_put_contents($sent_db, "$datum-$id\n", FILE_APPEND | LOCK_EX);
-                        } else {
-                            echo "<p class='error-msg'>Fehler beim Senden an $ausbilder: $result</p>";
-                        }
+                $message = sprintf(MAIL_TEXT, $name, $klasse, $vonbis);
+
+                if ($send) {
+                    $result = send_mail($ausbilder, $message, $cc);
+                    if (strpos($result, 'ok') !== false) {
+                        file_put_contents($sent_db, "$datum-$id\n", FILE_APPEND | LOCK_EX);
+                    } else {
+                        echo "<p class='error-msg'>Fehler beim Senden an $ausbilder: $result</p>";
                     }
                 }
+            }
 
-                if (!isset($_POST['file'])) {
-                    echo "<p>Fehlzeitenmeldung abgeschlossen.<br><a href='index.php'>Zur Startseite</a></p>";
-                }
-                break;
-        }
+            echo "<p>Fehlzeitenmeldung abgeschlossen.<br><a href='index.php'>Zur Startseite</a></p>";
+            break;
     }
-
-    function header_text($e)
-    {
-        echo '<form method="post"><input type="hidden" name="stage" value="2">';
-        echo $e ? "<h1>Gemeldet als entschuldigt</h1>" : "<h1>Unentschuldigt</h1>";
-        echo '</form>';
-    }
-    ?>
+}
+?>
 </main>
 </body>
 </html>
