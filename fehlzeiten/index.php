@@ -51,6 +51,32 @@ if (!isset($_POST['stage'])) {
         <input type="hidden" name="stage" value="0">
     </form>
     <div class="info-box">
+    <strong>Ausbilder-Email-Liste hochladen:</strong><br>
+    <form method="post" enctype="multipart/form-data">
+        <label>CSV-Datei für Ausbilder-Emails:</label>
+        <input type="file" name="ausbilderFile" required>
+        <button type="submit" name="uploadAusbilder">Upload</button>
+        <input type="hidden" name="stage" value="0">
+    </form>
+
+    <?php
+    if (isset($_POST['uploadAusbilder']) && isset($_FILES['ausbilderFile'])) {
+        $target_file = UPLOAD_DIR . 'ausbilder_Emails.csv';
+
+        if ($_FILES['ausbilderFile']['size'] == 0) {
+            echo "<p class='error-msg'>Datei ungültig (leer).</p>";
+        } else {
+            if (move_uploaded_file($_FILES['ausbilderFile']['tmp_name'], $target_file)) {
+                echo "<p class='success-msg'>Ausbilder-Datei erfolgreich hochgeladen.</p>";
+            } else {
+                echo "<p class='error-msg'>Fehler beim Hochladen der Datei.</p>";
+            }
+        }
+    }
+    ?>
+</div>
+<br>
+    <div class="info-box">
         <strong>Ausbilder-Email-Liste:</strong><br>
         Aktuelle Datei:
         <?php
