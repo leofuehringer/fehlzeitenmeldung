@@ -30,7 +30,7 @@ echo "<tr>
         <th>Ausbilder-Mail</th>
       </tr>"
 
-# Filterung nach $2
+# Filterung nach $2 - wird gerade aber nicht wirklich genutzt - da alle Zeilen ja in tmpfile geschrieben werden
 if [ "$filter" = "e" ]; then
   awk -F $'\t' 'NR>1 { if ($8>0 && $18=="entsch.") print }' "$fehlzeiten_file" > $tmpfile
 elif [ "$filter" = "u" ]; then
