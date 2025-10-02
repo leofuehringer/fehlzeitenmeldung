@@ -55,6 +55,19 @@ define('MAX_FILESIZE', 500000);
                 </form>
             </div>
             <div class="info-box">
+                <strong>Ausbilder-Email-Liste:</strong><br>
+                Aktuelle Datei:
+                <?php
+                if (file_exists(AUSBILDER_FILE)) {
+                    echo date("d.m.Y H:i:s ", filemtime(AUSBILDER_FILE)) . ", " . filesize(AUSBILDER_FILE) . " bytes";
+                } else {
+                    echo "<span class='error-msg'>FEHLT!</span>";
+                }
+                ?>
+                <br>Neue Datei wird automatisch erzeugt, wenn die ASV-WebUntis-Datei abgelegt wird.
+                <br>Test-Mail senden: <a href="test_email.php">hier</a>
+            </div>
+            <div class="info-box">
                 <strong>Ausbilder-Email-Liste hochladen:</strong><br>
                 <form method="post" enctype="multipart/form-data">
                     <label>CSV-Datei für Ausbilder-Emails:</label>
@@ -78,20 +91,6 @@ define('MAX_FILESIZE', 500000);
                     }
                 }
                 ?>
-            </div>
-            <br>
-            <div class="info-box">
-                <strong>Ausbilder-Email-Liste:</strong><br>
-                Aktuelle Datei:
-                <?php
-                if (file_exists(AUSBILDER_FILE)) {
-                    echo date("d.m.Y H:i:s ", filemtime(AUSBILDER_FILE)) . ", " . filesize(AUSBILDER_FILE) . " bytes";
-                } else {
-                    echo "<span class='error-msg'>FEHLT!</span>";
-                }
-                ?>
-                <br>Neue Datei wird automatisch erzeugt, wenn die ASV-WebUntis-Datei abgelegt wird.
-                <br>Test-Mail senden: <a href="test_email.php">hier</a>
             </div>
             <?php
         } else {
