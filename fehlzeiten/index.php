@@ -46,7 +46,7 @@ define('MAX_FILESIZE', 500000);
         if (!isset($_POST['stage'])) {
             // Upload-Formular
             ?>
-            <div class="info-box"></div>
+            <div class="info-box">
                 <form method="post" enctype="multipart/form-data">
                     <label>CSV-Datei hochladen:</label>
                     <input type="file" name="fileToUpload" required>
